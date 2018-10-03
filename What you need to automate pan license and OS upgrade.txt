@@ -1,0 +1,7 @@
+exit
+request license install
+abcdefghijklmnopqrstuvwkyz
+
+request system software check
+request system software download version 8.
+request restart system
