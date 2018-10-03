@@ -8,6 +8,7 @@ __pycache__/
 
 
 # My files
+config.py
 *.pdf
 # Distribution / packaging
 .Python
