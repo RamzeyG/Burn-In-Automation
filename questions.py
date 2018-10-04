@@ -34,6 +34,41 @@ def get_num_of_interfaces():
         print 'Current maximum Number is '+ str(MAX-1) + ' Please enter a smaller number.\n\n '
         exit(0)
 
+
+#                get_os_upgrade_pan()
+# This function asks the user what PAN OS they want to upgrade to.
+#
+# @return os_version - type string - os version user wants to upgrade PAN to.
+def get_os_upgrade_pan():
+    os_version = raw_input('\n\nWhat PAN OS version would you like to upgrade to? ')
+    panos_versions = []
+    MAX_OS = 8
+    for i in range(0,MAX_OS, 1):
+        panos_versions.append(str(i+1)+'.')
+
+    for z in range(0,MAX_OS, 1):
+        if os_version.startswith(panos_versions[i]):
+            return os_version
+
+    print "Please enter a proper OS. Available options are: ", panos_versions
+
+
+#         get_engineer()
+#
+# This function Asks the user for his/her name
+#
+# @return: Name of the User
+def get_engineer():
+    while 1:
+        user = raw_input('\n\nWho are you? ')
+        print 'About to use name: ' + user
+        confirm = raw_input('Are you sure? [y/n]: ')
+        if 'y' in confirm or 'Y' in confirm:
+            print 'about to return ' + user
+            return user
+
+print get_engineer()
+# get_os_upgrade_pan()
 # get_brand()
 
-get_num_of_interfaces()
+# get_num_of_interfaces()
