@@ -1,0 +1,612 @@
+show
+deviceconfig {
+  system {
+    panorama-server 10.10.210.200;
+    ip-address 10.10.210.223;
+    netmask 255.255.255.0;
+    hostname querytool-ha-2;
+    default-gateway 10.10.210.1;
+    domain intervlab.com;
+    update-server updates.paloaltonetworks.com;
+    dns-setting {
+      servers {
+        primary 10.10.210.70;
+        secondary 10.10.210.71;
+      }
+    }
+  }
+  setting {
+    wildfire {
+      file-size-limit;
+    }
+  }
+  high-availability {
+    group {
+      5 {
+        peer-ip 10.10.210.222;
+        mode {
+          active-passive {
+            passive-link-state auto;
+          }
+        }
+        state-synchronization {
+          enabled no;
+        }
+      }
+    }
+    interface {
+      ha1;
+      ha1-backup;
+    }
+    enabled yes;
+  }
+}
+network {
+  interface {
+    ethernet;
+    vlan {
+      units;
+    }
+    tunnel {
+      units {
+        tunnel.100;
+      }
+    }
+  }
+  vlan;
+  profiles {
+    monitor-profile;
+    zone-protection-profile;
+    interface-management-profile;
+  }
+  ike {
+    crypto-profiles {
+      ike-crypto-profiles;
+      ipsec-crypto-profiles;
+      global-protect-app-crypto-profiles;
+    }
+    gateway;
+  }
+  qos {
+    profile;
+  }
+  virtual-router {
+    vr1 {
+      ecmp {
+        algorithm {
+          ip-modulo;
+        }
+      }
+      protocol {
+        bgp {
+          routing-options {
+            graceful-restart {
+              enable yes;
+            }
+          }
+          enable no;
+        }
+      }
+    }
+  }
+  tunnel {
+    ipsec;
+    global-protect-gateway;
+    global-protect-site-to-site;
+  }
+  dhcp {
+    interface;
+  }
+}
+shared {
+  log-settings {
+    profiles {
+      "Log Forward Test" {
+        match-list {
+          "Threat logs" {
+            send-syslog testServer;
+            log-type threat;
+            filter "All Logs";
+            send-to-panorama no;
+          }
+        }
+      }
+      CA-threat-log-forwarding {
+        match-list {
+          CA-log-forward-profile {
+            send-syslog CA-syslog-profile;
+            log-type threat;
+            filter "All Logs";
+            send-to-panorama no;
+          }
+        }
+      }
+    }
+    syslog {
+      testServer {
+        server {
+          "Server Name" {
+            transport UDP;
+            port 514;
+            format BSD;
+            server 10.10.10.11;
+            facility LOG_USER;
+          }
+        }
+      }
+      CA-syslog-profile {
+        server {
+          DC3 {
+            transport UDP;
+            port 514;
+            format BSD;
+            server 10.14.128.33;
+            facility LOG_USER;
+          }
+        }
+      }
+    }
+  }
+  content-preview {
+    application-type {
+      technology;
+      category;
+    }
+    application;
+  }
+  botnet {
+    configuration {
+      http {
+        dynamic-dns {
+          enabled yes;
+          threshold 5;
+        }
+        malware-sites {
+          enabled yes;
+          threshold 5;
+        }
+        recent-domains {
+          enabled yes;
+          threshold 5;
+        }
+        ip-domains {
+          enabled yes;
+          threshold 10;
+        }
+        executables-from-unknown-sites {
+          enabled yes;
+          threshold 5;
+        }
+      }
+      other-applications {
+        irc yes;
+      }
+      unknown-applications {
+        unknown-tcp {
+          destinations-per-hour 10;
+          sessions-per-hour 10;
+          session-length {
+            maximum-bytes 100;
+            minimum-bytes 50;
+          }
+        }
+        unknown-udp {
+          destinations-per-hour 10;
+          sessions-per-hour 10;
+          session-length {
+            maximum-bytes 100;
+            minimum-bytes 50;
+          }
+        }
+      }
+    }
+    report {
+      topn 100;
+      scheduled yes;
+    }
+  }
+  server-profile {
+    ldap {
+      "IntervLab LDAP" {
+        server {
+          dc0.intervlab.com {
+            address 10.10.210.70;
+            port 389;
+          }
+        }
+        ldap-type active-directory;
+        bind-dn "CN=svc-panautom,OU=Admin Accounts,OU=Managed Objects,DC=intervlab,DC=com";
+        bind-password -AQ==M7Wc5thOumhPLI24bOTay6vy5TI=Vsl/Lx+vyWTHyMsd5SdrpQ==;
+        ssl no;
+        base DC=intervlab,DC=com;
+      }
+    }
+  }
+}
+zone;
+user-id-collector {
+  setting {
+    wmi-account INTERVLAB\kbrick;
+    wmi-password -AQ==KseobVBI32FkzjJ6CAQyv2wtlT8=7UuvKBsAUo4TwRnnpHthzw==;
+  }
+  server-monitor {
+    dc0.intervlab.com {
+      active-directory {
+        host 10.10.210.70;
+      }
+    }
+    dc1.intervlab.com {
+      active-directory {
+        host 10.10.210.71;
+      }
+      disabled no;
+    }
+  }
+}
+threats {
+  vulnerability;
+  spyware;
+}
+tag {
+  DFW {
+    color color4;
+  }
+  "BigFix Allow" {
+    color color1;
+  }
+  "TCP for Allianzgi" {
+    color color2;
+  }
+  "SENA to adist03" {
+    color color3;
+  }
+  "Vendor SENA System" {
+    color color4;
+  }
+  "Allow SAP to HK" {
+    color color5;
+  }
+  "Steves albatross policy" {
+    color color6;
+  }
+  extranets.allianzgi-us.com {
+    color color7;
+  }
+  "allow to mypc remote access" {
+    color color8;
+  }
+  "Allow 80 443 to 168.114.241.22" {
+    color color9;
+  }
+  "Allow HTTPHTTPS p-sd-global-03" {
+    color color10;
+  }
+  "Allow HTTPHTTPS GlobalFram241" {
+    color color11;
+  }
+  "Microsoft Data Center" {
+    color color12;
+  }
+  "Allow HK to SAP" {
+    color color13;
+  }
+  "SD to NY52nd street" {
+    color color14;
+  }
+  "NY 52nd St to SD" {
+    color color15;
+  }
+  SAN {
+    color color7;
+  }
+  Corp-VR {
+    color color3;
+  }
+}
+service-group;
+service;
+schedule;
+rulebase {
+  security {
+    rules {
+      pre {
+        to any;
+        from any;
+        source any;
+        destination any;
+        source-user any;
+        category any;
+        application any;
+        service application-default;
+        hip-profiles any;
+        action allow;
+        profile-setting {
+          group Alert-Group-Threat-Prevention;
+        }
+        log-setting CA-threat-log-forwarding;
+      }
+      test {
+        to any;
+        from any;
+        source any;
+        destination any;
+        source-user any;
+        category any;
+        application any;
+        service application-default;
+        hip-profiles any;
+        action allow;
+      }
+      post {
+        to any;
+        from any;
+        source any;
+        destination any;
+        source-user any;
+        category any;
+        application any;
+        service application-default;
+        hip-profiles any;
+        action allow;
+      }
+    }
+  }
+  default-security-rules {
+    rules;
+  }
+  application-override {
+    rules;
+  }
+  decryption {
+    rules;
+  }
+  tunnel-inspect {
+    rules;
+  }
+  authentication {
+    rules;
+  }
+  nat {
+    rules;
+  }
+  qos {
+    rules;
+  }
+  pbf {
+    rules;
+  }
+  dos {
+    rules;
+  }
+}
+region;
+profiles {
+  virus {
+    Alert-Antivirus {
+      decoder {
+        http {
+          action alert;
+          wildfire-action allow;
+        }
+        smtp {
+          action default;
+          wildfire-action allow;
+        }
+        imap {
+          action default;
+          wildfire-action allow;
+        }
+        pop3 {
+          action default;
+          wildfire-action allow;
+        }
+        ftp {
+          action alert;
+          wildfire-action allow;
+        }
+        smb {
+          action alert;
+          wildfire-action allow;
+        }
+      }
+    }
+  }
+  spyware {
+    Alert-Anti-Spyware {
+      rules {
+        simple-critical {
+          action {
+            alert;
+          }
+          severity critical;
+          threat-name any;
+          category any;
+          packet-capture disable;
+        }
+        simple-high {
+          action {
+            alert;
+          }
+          severity high;
+          threat-name any;
+          category any;
+          packet-capture disable;
+        }
+        simple-medium {
+          action {
+            alert;
+          }
+          severity medium;
+          threat-name any;
+          category any;
+          packet-capture disable;
+        }
+        simple-low {
+          action {
+            alert;
+          }
+          severity low;
+          threat-name any;
+          category any;
+          packet-capture disable;
+        }
+      }
+      botnet-domains {
+        lists {
+          default-paloalto-dns {
+            action {
+              alert;
+            }
+          }
+        }
+        packet-capture disable;
+      }
+    }
+  }
+  vulnerability {
+    Alert-VulnerabilityProtection {
+      rules {
+        simple-client-critical {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity critical;
+          cve any;
+          threat-name any;
+          host client;
+          category any;
+          packet-capture disable;
+        }
+        simple-client-high {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity high;
+          cve any;
+          threat-name any;
+          host client;
+          category any;
+          packet-capture disable;
+        }
+        simple-client-medium {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity medium;
+          cve any;
+          threat-name any;
+          host client;
+          category any;
+          packet-capture disable;
+        }
+        simple-server-critical {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity critical;
+          cve any;
+          threat-name any;
+          host server;
+          category any;
+          packet-capture disable;
+        }
+        simple-server-high {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity high;
+          cve any;
+          threat-name any;
+          host server;
+          category any;
+          packet-capture disable;
+        }
+        simple-server-medium {
+          action {
+            alert;
+          }
+          vendor-id any;
+          severity medium;
+          cve any;
+          threat-name any;
+          host server;
+          category any;
+          packet-capture disable;
+        }
+      }
+    }
+  }
+  url-filtering;
+  custom-url-category;
+  file-blocking;
+  data-filtering;
+  data-objects;
+  hip-objects;
+  hip-profiles;
+  dos-protection;
+  decryption;
+  wildfire-analysis;
+  gtp;
+}
+profile-group {
+  Alert-Group-Threat-Prevention {
+    spyware Alert-Anti-Spyware;
+    vulnerability Alert-VulnerabilityProtection;
+    virus Alert-Antivirus;
+  }
+}
+import {
+  network {
+    interface [ vlan loopback tunnel tunnel.100];
+    vlan;
+    virtual-router vr1;
+    virtual-wire;
+  }
+}
+group-mapping {
+  GrpMap {
+    group-object group;
+    group-name name;
+    group-member member;
+    user-object person;
+    user-name sAMAccountName;
+    email mail;
+    server-profile "IntervLab LDAP";
+  }
+}
+external-list;
+authentication-object;
+application-tag;
+application-group;
+application-filter;
+application;
+address-group;
+address {
+  adel {
+    ip-netmask 1.1.1.1;
+    description test;
+  }
+}
+mgt-config {
+  users {
+    admin {
+      phash $1$graxbabv$Qe0B8gYOIRu9dciOtEz4A/;
+      permissions {
+        role-based {
+          superuser yes;
+        }
+      }
+    }
+  }
+}
+[edit]                                                                          
+admin@querytool-ha-2(active)# 
+[edit]                                                                          
+admin@querytool-ha-2(active)# 
+[edit]                                                                          
+admin@querytool-ha-2(active)# 

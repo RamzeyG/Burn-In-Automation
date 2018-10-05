@@ -1,6 +1,3 @@
-from interface_funcs import *
-
-
 #     device_type.py
 #
 # This file contains the list of supported devices,
@@ -24,27 +21,6 @@ invalid_cmd_key = {
 	'cisco': 'Invalid',
 	'arista': 'Invalid',
 	'juniper': '',
-	'pan': '"Unknown command:"\n"Invalid syntax"',
+	'pan': '"Unknown command:"',
 	'ubuntu': '"not found"'
 }
-
-
-interface_funcs = {
-	'cisco': cisco_interface_check,
-	'arista': arista_interface_check,
-	'juniper': juniper_interface_check,
-	'pan': pan_interface_check,
-	'ubuntu': ubuntu_interface_check
-}
-
-
-dict_list = []
-dict_list.append(config_mode)
-dict_list.append(invalid_cmd_key)
-dict_list.append(interface_funcs)
-
-#     dict_list
-#
-# 0 config_mode
-# 1 invalid_cmd_key
-# 2 interface_funcs

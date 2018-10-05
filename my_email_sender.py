@@ -36,6 +36,6 @@ def send_email(filename, to_email, from_email, subject, email_password, email_us
         print("Email failed to send.")
 
 
+send_email(filename='pdf-sample.pdf', to_email=config.RAY, from_email=config.EMAIL_ADDRESS,
+           subject="Attachment2", email_password=config.PASSWORD, email_user=config.EMAIL_ADDRESS)
 
-# send_email(filename='pdf-sample.pdf', to_email=config.EMAIL_ADDRESS, from_email=config.EMAIL_ADDRESS,
-#          subject="Attachment2", email_password=config.PASSWORD, email_user=config.EMAIL_ADDRESS)

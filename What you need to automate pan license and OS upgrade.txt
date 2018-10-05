@@ -8,3 +8,24 @@ request system software check
 request system software download version 8.0
 request system software install version 8.
 request restart system
+
+
+https://10.10.192.64/php/login.php
+
+
+# 
+set cli config-output-format set
+configure
+show
+
+# 1 Assign Managment IP address
+
+# 2 Get proper DNS 
+set deviceconfig system dns-setting servers primary 8.8.8.8
+commit
+
+# 3. Add ntp server to obtain time
+set deviceconfig system ntp-servers primary-ntp-server ntp-server-address 0.us.pool.ntp.org
+
+
+set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address 1.us.pool.ntp.org
