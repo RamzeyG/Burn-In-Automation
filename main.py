@@ -19,5 +19,6 @@ manufacturer_specs_url = get_device_specifications()
 # Quality checks
 interface_count = get_num_of_interfaces()
 
-interface_success_percentage = check_interfaces()
+
+interface_success_percentage = check_interfaces(interface_count, equipment_manufacturer)
 

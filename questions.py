@@ -12,13 +12,16 @@ def get_brand():
     for device in invalid_cmd_key:
         print str(i) + ') ' + device
         i += 1
-    brand = raw_input('\n\nWhat Device Manufacture are you using? ')
-
+    brand = raw_input('\n\nWhat Device Manufacture are you using?[name] ')
+    if brand.isdigit():
+        print 'Type the full name please'
+        return get_brand()
     for device in invalid_cmd_key:
+        print device
         if device == brand:
             return brand
-    print("\n\nYou did not enter a proper device Name. Try running the program again")
-    exit(0)
+    print("\n\nYou did not enter a proper device Name. Try again.")
+    return get_brand()
 
 #
 # @return: number - type int, number of interfaces
@@ -32,8 +35,8 @@ def get_num_of_interfaces():
     if number < 100 and number > 0:
         return number
     else:
-        print 'Current maximum Number is ' + str(MAX-1) + ' Please enter a smaller number.\n\n '
-        exit(0)
+        print 'Please enter a valid number.\n\n '
+        return get_num_of_interfaces()
 
 
 #                get_os_upgrade_pan()
@@ -77,7 +80,7 @@ def get_information(prompt, confirmation):
 def get_engineer():
     my_prompt = 'Who are you? '
     my_confirmation ='About to use name: '
-    return  get_information(my_prompt, my_confirmation)
+    return get_information(my_prompt, my_confirmation)
 
 
 def get_serial_number():
