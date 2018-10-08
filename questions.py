@@ -117,6 +117,14 @@ def get_equipment_model():
 def get_os_upgrade():
     my_prompt = ''
 
+
+
+def get_burn_in_duration():
+    my_prompt = 'How many hours is the burn in running for?'
+    my_confirmation = 'About to use hour count of: '
+    return get_information(my_prompt, my_confirmation)
+
+
 # get_date()
 # print get_equipment_model()
 # get_serial_numbers()

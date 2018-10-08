@@ -13,19 +13,29 @@ request restart system
 https://10.10.192.64/php/login.php
 
 
-# 
+# make show commands in command format
 set cli config-output-format set
 configure
 show
 
 # 1 Assign Managment IP address
+set deviceconfig system ip-address 10.10.192.64
+set deviceconfig system netmask 255.255.248.0
+set deviceconfig system default-gateway 10.10.192.1
 
 # 2 Get proper DNS 
 set deviceconfig system dns-setting servers primary 8.8.8.8
-commit
 
 # 3. Add ntp server to obtain time
 set deviceconfig system ntp-servers primary-ntp-server ntp-server-address 0.us.pool.ntp.org
 
-
 set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address 1.us.pool.ntp.org
+
+commit
+
+# Set mgmt IP address
+
+
+
+installing this program
+ sudo pip install python-docx
