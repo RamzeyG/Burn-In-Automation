@@ -25,18 +25,41 @@ def get_brand():
 
 #
 # @return: number - type int, number of interfaces
+# @return: number - type int, number of interfaces that are being checked
 def get_num_of_interfaces():
     MAX = 100
     try:
-        number = input("How many Interfaces does the device have? ")
+        number = input("How many total Interfaces does the device have? ")
+        number2 = input("How many Interfaces do you want to check? ")
     except Exception as e:
         print 'You did not enter a valid number. Please try again.'
         exit(0)
-    if number < 100 and number > 0:
-        return number
+    if (number < MAX and number > 0) or (number2 < number and number2 > 0):
+        return number, number2
     else:
         print 'Please enter a valid number.\n\n '
         return get_num_of_interfaces()
+
+def get_os_upgrade(device_type):
+    # Interface funcs are stored in interface_funcs.py
+    os_upgrade_funcs[device_type]()
+#                get_os_upgrade_pan()
+#
+# This function asks the user what PAN OS they want to upgrade to.
+#
+# @return os_version - type string - os version user wants to upgrade PAN to.
+def get_os_upgrade_cisco():
+    os_version = raw_input('\n\nWhat Cisco OS version would you like to upgrade to? ')
+    os_versions = []
+    MAX_OS = 16
+    for i in range(0, MAX_OS, 1):
+        panos_versions.append(str(i+1)+'.')
+
+    for z in range(0,MAX_OS, 1):
+        if os_version.startswith(os_versions[i]):
+            return os_version
+
+    print "Please enter a proper OS. Available options are: ", os_versions
 
 
 #                get_os_upgrade_pan()
@@ -114,16 +137,40 @@ def get_equipment_model():
     return get_information(my_prompt, my_confirmation)
 
 
-def get_os_upgrade():
-    my_prompt = ''
+def get_os_upgrade(brand, MAX_OS):
+    prompt = '\n\nWhat ' + brand + ' OS version would you like to upgrade to? '
+    os_version = raw_input(prompt)
+    os_versions = []
+    for i in range(0, MAX_OS, 1):
+        os_versions.append(str(i + 1) + '.')
+
+    for z in range(0, MAX_OS, 1):
+        if os_version.startswith(os_versions[z]):
+            return os_version
+
+    print "\nPlease enter a proper OS. Available options are: ", os_versions
+
+    return get_os_upgrade(brand, MAX_OS)
 
 
 
 def get_burn_in_duration():
-    my_prompt = 'How many hours is the burn in running for?'
+    my_prompt = 'How many hours is the burn in running for? '
     my_confirmation = 'About to use hour count of: '
     return get_information(my_prompt, my_confirmation)
 
+
+
+def get_inventory():
+    my_prompt = 'Did you take inventory and verify the entire shipment arrived?[yes/no] '
+    my_confirmation = 'About to use value of: '
+    return get_information(my_prompt, my_confirmation)
+
+
+def get_damage_assesment():
+    my_prompt = 'Are there damages to the devices or box? '
+    my_confirmation = 'About to submit: '
+    return get_information(my_prompt, my_confirmation)
 
 # get_date()
 # print get_equipment_model()

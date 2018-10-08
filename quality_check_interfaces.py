@@ -11,6 +11,7 @@ def check_interfaces(num_of_interfaces, device_type):
     # Interface funcs are stored in interface_funcs.py
     interface_funcs[device_type](percentage, num_of_interfaces, dict_list)
 
+    return percentage * 100
 
 
 

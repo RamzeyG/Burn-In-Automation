@@ -1,6 +1,5 @@
 from interface_funcs import *
 
-
 #     device_type.py
 #
 # This file contains the list of supported devices,
@@ -36,7 +35,6 @@ interface_funcs = {
 	'pan': pan_interface_check,
 	'ubuntu': ubuntu_interface_check
 }
-
 
 dict_list = []
 dict_list.append(config_mode)
