@@ -31,6 +31,9 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
     # Add ntp server to obtain time
     system_cmds.append('set deviceconfig system ntp-servers primary-ntp-server ntp-server-address 0.us.pool.ntp.org')
     system_cmds.append('set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address 1.us.pool.ntp.org')
+    system_cmds.append('set network profiles interface-management-profile Standard-Mgmt https yes')
+    system_cmds.append('set network profiles interface-management-profile Standard-Mgmt ssh yes')
+    system_cmds.append('set network profiles interface-management-profile Standard-Mgmt ping yes')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route nexthop ip-address 10.10.192.1')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route destination 0.0.0.0/0')
     system_cmds.append('delete network interface ethernet ethernet1/1 virtual-wire')
