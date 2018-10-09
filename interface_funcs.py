@@ -34,10 +34,17 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
     system_cmds.append('set network profiles interface-management-profile Standard-Mgmt https yes')
     system_cmds.append('set network profiles interface-management-profile Standard-Mgmt ssh yes')
     system_cmds.append('set network profiles interface-management-profile Standard-Mgmt ping yes')
+    # system_cmds.append('delete network interface ethernet ethernet1/1 virtual-wire')
+    # system_cmds.append('delete network interface ethernet ethernet1/2 virtual-wire')
+    system_cmds.append('delete network virtual-wire default-vwire interface1')
+    system_cmds.append('delete network virtual-wire default-vwire interface2')
+    system_cmds.append('delete network virtual-wire default-vwire')
+    system_cmds.append('delete zone trust network virtual-wire ethernet1/2')
+    system_cmds.append('delete zone untrust network virtual-wire ethernet1/1')
+    system_cmds.append('set zone untrust network layer3 [ ]')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route nexthop ip-address 10.10.192.1')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route destination 0.0.0.0/0')
-    system_cmds.append('delete network interface ethernet ethernet1/1 virtual-wire')
-    system_cmds.append('delete network interface ethernet ethernet1/2 virtual-wire')
+
     system_cmds.append('commit')
 
     ping_test_cmds = []
@@ -57,11 +64,11 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
     for port in used_ports:
         my_interface = interface_name + str(port)
         cmd_list = []
-        cmd_list.append('interface ethernet ' + my_interface + ' layer3 interface-management-profile Standard-Mgmt')
+        cmd_list.append('network interface ethernet ' + my_interface + ' layer3 interface-management-profile Standard-Mgmt')
         cmd_list.append('network interface ethernet ' + my_interface + ' layer3 ip 10.10.192.65/21')
         cmd_list.append('network virtual-router default interface ' + my_interface)
         cmd_list.append('zone trust network layer3 ' + my_interface)
-
+        cmd_list.append('set network virtual-router default routing-table ip static-route default-route interface '+my_interface)
 
 
 
