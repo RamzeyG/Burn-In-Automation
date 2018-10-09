@@ -3,6 +3,8 @@
 from questions import *
 from quality_check_interfaces import *
 from latex import *
+from os_upgrade import *
+import subprocess
 
 engineer_name = get_engineer()
 
@@ -12,6 +14,7 @@ equipment_manufacturer = get_brand()
 
 os = get_os_upgrade(equipment_manufacturer, 9)
 
+upgrade_os(equipment_manufacturer, os)
 equipment_model = get_equipment_model()
 
 serial_num = get_serial_number()
@@ -25,7 +28,7 @@ inventory_check = get_inventory()
 damage_assement = get_damage_assesment()
 
 # Quality checks
-total_interface_count, checking_int_count= get_num_of_interfaces()
+total_interface_count = get_num_of_interfaces()
 
 
 interface_percentage = check_interfaces(total_interface_count, equipment_manufacturer)
@@ -33,7 +36,8 @@ interface_percentage = check_interfaces(total_interface_count, equipment_manufac
 
 
 # Write to LaTex
-f = open('test.tex', 'w')
+texfile = 'test.tex'
+f = open(texfile, 'w')
 f.write(begin)
 f.write(set_title(engineer_name, date))
 f.write(set_equipment_info(equipment_manufacturer, equipment_model, serial_num))
@@ -43,3 +47,6 @@ f.write(end_document())
 f.close()
 
 
+#generate PDF
+proc = subprocess.Popen(['pdflatex', texfile])
+proc.communicate()

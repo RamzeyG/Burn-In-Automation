@@ -67,15 +67,22 @@ def set_quality_checks_table(os, visual_inspec, int_test, int_percent_check, bur
     string += end_flush('left')
     string += '\\begin{table}[H]\n\\centering\n'
     string += '\\begin{tabular}{|c|l|c|}\n \\hline\n'
-    string += '& ' + bold_text('Quality Checks') + ' & '+ bold_text('Pass/Fail') + '\\\\ \\hline\n'
+    string += '& ' + bold_text('Quality Checks') + ' & ' + bold_text('Pass/Fail') + '\\\\ \\hline\n'
 
     # Actual Table Contents
     end_line = ' \\\\ \\hline\n'
-    string += '1& Upgraded OS & ' + os + end_line
-    string += '2& Visual Inspection (damage check) & '+ visual_inspec + end_line
+    if 'no' in os:
+        string += '1& Upgraded OS & Fail' + end_line
+    else:
+        string += '1& Upgraded OS & Pass' + end_line
+
+    if 'no' in visual_inspec:
+        string += '2& Visual Inspection (damage check) & Pass' + end_line
+    else:
+        string += '2& Visual Inspection (damage check) & Fail' + end_line
     string += '3& Tested Interfaces/Ports (' + str(int_percent_check) + ') & ' + str(int(int_test)) + end_line
     string += '4& Burn in Duration: 24+ hours & ' + burn_in_duration + end_line
-    string += '5& Inventory Check & '+ inventory_check + end_line
+    string += '5& Inventory Check & ' + inventory_check + end_line
 
     # End Table
     string += '\\end{tabular}\n\\end{table}'

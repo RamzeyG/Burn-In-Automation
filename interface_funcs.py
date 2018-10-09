@@ -14,7 +14,7 @@ import random
 # @param: percentage - percentage of interfaces you want to check - deciaml form
 def pan_interface_check(percentage, num_of_interfaces, dict_list):
     interface_name = get_interface_name_scheme('pan')
-    print 'here2'
+    # print 'here2'
     single_file = open('pan_int_cmds.txt', 'w')
     ping_cmd = 'ping source 10.10.192.65 host www.google.com'
 
@@ -78,7 +78,7 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
 
 
     # Run ssh automation script
-    #run_ssh_automation('pan')
+    run_ssh_automation('pan', single_file=None)
 
 
 
@@ -99,17 +99,20 @@ def ubuntu_interface_check(percentage, num_of_interfaces, dict_list):
 
 
 
-def get_args(device_type):
+def get_args(device_type, sf_name):
     parser = argparse.ArgumentParser()
     parser.add_argument('-kfile', '--kevinfile', default=None)
-    parser.add_argument('-sf', '--singlefile', default=device_type+'-sf.txt')
+    if sf_name is None:
+        parser.add_argument('-sf', '--singlefile', default=device_type+'-sf.txt')
+    else:
+        parser.add_argument('-sf', '--singlefile', default=sf_name)
     parser.add_argument('-b', '--devicebrand', default=device_type)
 
     return parser.parse_args()
 
 
-def run_ssh_automation(device_type):
-    Main(get_args(device_type), dict_list)
+def run_ssh_automation(device_type, sf_name):
+    Main(get_args(device_type, sf_name), dict_list)
 
 
 def get_used_ports(percentage, num_of_interfaces):
