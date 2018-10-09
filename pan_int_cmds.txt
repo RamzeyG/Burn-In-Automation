@@ -7,308 +7,181 @@ set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address 1.us
 set network profiles interface-management-profile Standard-Mgmt https yes
 set network profiles interface-management-profile Standard-Mgmt ssh yes
 set network profiles interface-management-profile Standard-Mgmt ping yes
+delete network virtual-wire default-vwire interface1
+delete network virtual-wire default-vwire interface2
+delete network virtual-wire default-vwire
+delete zone trust network virtual-wire ethernet1/2
+delete zone untrust network virtual-wire ethernet1/1
+delete zone untrust network virtual-wire
+set zone untrust network layer3 [ ]
 set network virtual-router default routing-table ip static-route default-route nexthop ip-address 10.10.192.1
 set network virtual-router default routing-table ip static-route default-route destination 0.0.0.0/0
-delete network interface ethernet ethernet1/1 virtual-wire
-delete network interface ethernet ethernet1/2 virtual-wire
 commit
-set interface ethernet ethernet1/2 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/2 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/2
-set zone trust network layer3 ethernet1/2
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/2 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/2 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/2
-delete zone trust network layer3 ethernet1/2
-set interface ethernet ethernet1/3 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/3 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/3
-set zone trust network layer3 ethernet1/3
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/3 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/3 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/3
-delete zone trust network layer3 ethernet1/3
-set interface ethernet ethernet1/4 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/4 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/4
-set zone trust network layer3 ethernet1/4
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/4 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/4 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/4
-delete zone trust network layer3 ethernet1/4
-set interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/6 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/6
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/6
 set zone trust network layer3 ethernet1/6
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/6 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/6
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/6
 delete zone trust network layer3 ethernet1/6
-set interface ethernet ethernet1/8 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/8 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/8
-set zone trust network layer3 ethernet1/8
+set network interface ethernet ethernet1/7 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/7 layer3 ip 10.10.192.65/21
+set network virtual-router default interface ethernet1/7
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/7
+set zone trust network layer3 ethernet1/7
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/8 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/8 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/8
-delete zone trust network layer3 ethernet1/8
-set interface ethernet ethernet1/9 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/9 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/9
-set zone trust network layer3 ethernet1/9
+delete network interface ethernet ethernet1/7 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/7 layer3 ip 10.10.192.65/21
+delete network virtual-router default interface ethernet1/7
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/7
+delete zone trust network layer3 ethernet1/7
+set network interface ethernet ethernet1/12 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/12 layer3 ip 10.10.192.65/21
+set network virtual-router default interface ethernet1/12
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/12
+set zone trust network layer3 ethernet1/12
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/9 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/9 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/9
-delete zone trust network layer3 ethernet1/9
-set interface ethernet ethernet1/10 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/10 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/10
-set zone trust network layer3 ethernet1/10
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/10 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/10 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/10
-delete zone trust network layer3 ethernet1/10
-set interface ethernet ethernet1/13 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/12 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/12 layer3 ip 10.10.192.65/21
+delete network virtual-router default interface ethernet1/12
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/12
+delete zone trust network layer3 ethernet1/12
+set network interface ethernet ethernet1/13 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/13 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/13
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/13
 set zone trust network layer3 ethernet1/13
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/13 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/13 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/13 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/13
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/13
 delete zone trust network layer3 ethernet1/13
-set interface ethernet ethernet1/16 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/16 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/16 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/16
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/16
 set zone trust network layer3 ethernet1/16
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/16 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/16 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/16 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/16
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/16
 delete zone trust network layer3 ethernet1/16
-set interface ethernet ethernet1/17 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/17 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/17
-set zone trust network layer3 ethernet1/17
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/17 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/17 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/17
-delete zone trust network layer3 ethernet1/17
-set interface ethernet ethernet1/19 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/19 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/19 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/19
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/19
 set zone trust network layer3 ethernet1/19
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/19 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/19 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/19 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/19
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/19
 delete zone trust network layer3 ethernet1/19
-set interface ethernet ethernet1/20 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/20 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/20
-set zone trust network layer3 ethernet1/20
+set network interface ethernet ethernet1/24 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/24 layer3 ip 10.10.192.65/21
+set network virtual-router default interface ethernet1/24
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/24
+set zone trust network layer3 ethernet1/24
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/20 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/20 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/20
-delete zone trust network layer3 ethernet1/20
-set interface ethernet ethernet1/23 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/23 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/23
-set zone trust network layer3 ethernet1/23
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/23 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/23 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/23
-delete zone trust network layer3 ethernet1/23
-set interface ethernet ethernet1/25 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/25 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/25
-set zone trust network layer3 ethernet1/25
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/25 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/25 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/25
-delete zone trust network layer3 ethernet1/25
-set interface ethernet ethernet1/26 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/24 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/24 layer3 ip 10.10.192.65/21
+delete network virtual-router default interface ethernet1/24
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/24
+delete zone trust network layer3 ethernet1/24
+set network interface ethernet ethernet1/26 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/26 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/26
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/26
 set zone trust network layer3 ethernet1/26
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/26 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/26 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/26 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/26
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/26
 delete zone trust network layer3 ethernet1/26
-set interface ethernet ethernet1/27 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/27 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/27
-set zone trust network layer3 ethernet1/27
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/27 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/27 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/27
-delete zone trust network layer3 ethernet1/27
-set interface ethernet ethernet1/28 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/28 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/28
-set zone trust network layer3 ethernet1/28
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/28 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/28 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/28
-delete zone trust network layer3 ethernet1/28
-set interface ethernet ethernet1/29 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/29 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/29 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/29
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/29
 set zone trust network layer3 ethernet1/29
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/29 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/29 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/29 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/29
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/29
 delete zone trust network layer3 ethernet1/29
-set interface ethernet ethernet1/30 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/30 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/30 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/30
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/30
 set zone trust network layer3 ethernet1/30
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/30 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/30 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/30 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/30
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/30
 delete zone trust network layer3 ethernet1/30
-set interface ethernet ethernet1/32 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/32 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/32
-set zone trust network layer3 ethernet1/32
+set network interface ethernet ethernet1/37 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/37 layer3 ip 10.10.192.65/21
+set network virtual-router default interface ethernet1/37
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/37
+set zone trust network layer3 ethernet1/37
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/32 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/32 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/32
-delete zone trust network layer3 ethernet1/32
-set interface ethernet ethernet1/35 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/35 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/35
-set zone trust network layer3 ethernet1/35
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/35 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/35 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/35
-delete zone trust network layer3 ethernet1/35
-set interface ethernet ethernet1/40 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/40 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/40
-set zone trust network layer3 ethernet1/40
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/40 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/40 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/40
-delete zone trust network layer3 ethernet1/40
-set interface ethernet ethernet1/45 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/45 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/45
-set zone trust network layer3 ethernet1/45
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/45 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/45 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/45
-delete zone trust network layer3 ethernet1/45
-set interface ethernet ethernet1/46 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/46 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/46
-set zone trust network layer3 ethernet1/46
-commit
-exit
-ping source 10.10.192.65 host www.google.com
-configure
-delete interface ethernet ethernet1/46 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/46 layer3 ip 10.10.192.65/21
-delete network virtual-router default interface ethernet1/46
-delete zone trust network layer3 ethernet1/46
-set interface ethernet ethernet1/50 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/37 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/37 layer3 ip 10.10.192.65/21
+delete network virtual-router default interface ethernet1/37
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/37
+delete zone trust network layer3 ethernet1/37
+set network interface ethernet ethernet1/50 layer3 interface-management-profile Standard-Mgmt
 set network interface ethernet ethernet1/50 layer3 ip 10.10.192.65/21
 set network virtual-router default interface ethernet1/50
+set set network virtual-router default routing-table ip static-route default-route interface ethernet1/50
 set zone trust network layer3 ethernet1/50
 commit
 exit
 ping source 10.10.192.65 host www.google.com
 configure
-delete interface ethernet ethernet1/50 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/50 layer3 interface-management-profile Standard-Mgmt
 delete network interface ethernet ethernet1/50 layer3 ip 10.10.192.65/21
 delete network virtual-router default interface ethernet1/50
+delete set network virtual-router default routing-table ip static-route default-route interface ethernet1/50
 delete zone trust network layer3 ethernet1/50

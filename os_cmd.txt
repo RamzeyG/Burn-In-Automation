@@ -1,0 +1,7 @@
+exit
+request system software check
+request system software download version 4.2.3
+sleep 5
+request system software install version 4.2.3
+sleep 5
+request restart system

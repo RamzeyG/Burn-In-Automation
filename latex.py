@@ -80,7 +80,7 @@ def set_quality_checks_table(os, visual_inspec, int_test, int_percent_check, bur
         string += '2& Visual Inspection (damage check) & Pass' + end_line
     else:
         string += '2& Visual Inspection (damage check) & Fail' + end_line
-    string += '3& Tested Interfaces/Ports (' + str(int_percent_check) + ') & ' + str(int(int_test)) + end_line
+    string += '3& Tested Interfaces/Ports (' + str(int(int_percent_check)) + '\\%) & ' + str(int(int_test)) + end_line
     string += '4& Burn in Duration: 24+ hours & ' + burn_in_duration + end_line
     string += '5& Inventory Check & ' + inventory_check + end_line
 

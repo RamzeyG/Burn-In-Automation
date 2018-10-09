@@ -12,5 +12,5 @@ def upgrade_os(equipment_manufacturer, os):
         file.write('request restart system\n')
 
         file.close()
-
-        run_ssh_automation('pan', sf_name='os_cmd.txt')
+        # run_ssh_automatino is not defined.....
+        # run_ssh_automation('pan', sf_name='os_cmd.txt')
