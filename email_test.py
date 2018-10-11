@@ -22,7 +22,7 @@ msgRoot.preamble = 'This is a multi-part message in MIME format.'
 msgAlternative = MIMEMultipart('alternative')
 msgRoot.attach(msgAlternative)
 
-msgText = MIMEText('This is the alternative plain text message.')
+msgText = MIMEText('''Your recent project's burn in is complete''')
 msgAlternative.attach(msgText)
 
 name = "RAMZEY"
@@ -55,6 +55,6 @@ msgRoot.attach(msgImage)
 smtp = smtplib.SMTP()
 smtp.connect('smtp-mail.outlook.com', 587)
 smtp.starttls()
-smtp.login('rghanaim@intervision.com', '')
+smtp.login('rghanaim@intervision.com', 'Hellothere2')
 smtp.sendmail('rghanaim@intervision.com', 'rghanaim@intervision.com', msgRoot.as_string())
 smtp.quit()
