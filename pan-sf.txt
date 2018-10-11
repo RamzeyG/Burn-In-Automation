@@ -1,1 +1,3 @@
-show
+sleep 5
+exit
+configure

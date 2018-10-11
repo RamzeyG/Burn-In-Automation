@@ -1,9 +1,13 @@
 
-
+# from ssh_automate import *
+from devicetype import *
 from questions import *
 from quality_check_interfaces import *
 from latex import *
 from os_upgrade import *
+
+from interface_names import *
+# from ssh_automate import *
 import subprocess
 
 engineer_name = get_engineer()
@@ -14,7 +18,16 @@ equipment_manufacturer = get_brand()
 
 os = get_os_upgrade(equipment_manufacturer, 9)
 
+# Quality checks
+total_interface_count = get_num_of_interfaces()
+
+
+interface_percentage = check_interfaces(total_interface_count, equipment_manufacturer)
+
+
+
 upgrade_os(equipment_manufacturer, os)
+
 equipment_model = get_equipment_model()
 
 serial_num = get_serial_number()
@@ -27,11 +40,6 @@ inventory_check = get_inventory()
 
 damage_assement = get_damage_assesment()
 
-# Quality checks
-total_interface_count = get_num_of_interfaces()
-
-
-interface_percentage = check_interfaces(total_interface_count, equipment_manufacturer)
 
 
 

@@ -1,0 +1,48 @@
+set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system ip-address [Kadmin@PA-3220# set deviceconfig system ip-address 10.10.192.66
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system netmask [Kadmin@PA-3220# set deviceconfig system netmask 255.255.248.0
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system default-gateway [Kadmin@PA-3220# set deviceconfig system default-gateway 10.10.192.1
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system dns-setting [Kadmin@PA-3220# set deviceconfig system dns-setting servers [Kadmin@PA-3220# set deviceconfig system dns-setting servers primary [Kadmin@PA-3220# set deviceconfig system dns-setting servers primary 8.8.8.8 [Kadmin@PA-3220# set deviceconfig system dns-setting servers primary 8.8.8.8 secon dary [K[A[Kadmin@PA-3220# set deviceconfig system dns-setting servers primary 8.8.8.8 secon dary 8.8.8.8
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system ntp-servers [Kadmin@PA-3220# set deviceconfig system ntp-servers primary-ntp-server [Kadmin@PA-3220# set deviceconfig system ntp-servers primary-ntp-server ntp-server -address [K[A[Kadmin@PA-3220# set deviceconfig system ntp-servers primary-ntp-server ntp-server -address 0.us.pool.ntp.org
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# set [Kadmin@PA-3220# set deviceconfig [Kadmin@PA-3220# set deviceconfig system [Kadmin@PA-3220# set deviceconfig system ntp-servers [Kadmin@PA-3220# set deviceconfig system ntp-servers secondary-ntp-server [Kadmin@PA-3220# set deviceconfig system ntp-servers secondary-ntp-server ntp-serv er-address [K[A[Kadmin@PA-3220# set deviceconfig system ntp-servers secondary-ntp-server ntp-serv er-address 1.us.pool.ntp.org
+
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# 
+[edit]                                                                          
+admin@PA-3220# commit
+
+
+
+Commit job 3 is in progress. Use Ctrl+C to return to command prompt
+...55%75%98%

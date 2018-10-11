@@ -3,6 +3,10 @@ import time
 import argparse
 import numpy as np
 
+# REMOVE
+from devicetype import *
+
+
 # Remove bad chars
 import re
 
@@ -111,35 +115,77 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 	# Initial sleep to wait for banner to come in
 	time.sleep(3)
 	# executing user commands
-	print 'command list is: ' , command_list
+	# print 'command list is: ' , command_list
 	for line in command_list:
-		if 'show' or 'commit' in line:
+		cmd = line.strip()
+		if 'show' in cmd:
+			sleep_time = 10
+		elif 'sleep ' in cmd:
+			print '***************SLEEP IS IN LINE'
+			sleep_time = 5 * 60
+			line = command_list.next()
+			cmd = line.strip()
+			print '| SLEEPING FOR 5 MINUTES'
+			time.sleep(sleep_time)
 			sleep_time = 5
+		# elif 'ping count' in cmd:
+		# 	sleep_time = 10
+		# 	interface = cmd.split()
+		#
+		# 	print '<<<<<<<<<<  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
+		# 	print '| SLEEPING FOR 10 SECONDS'
+		# 	time.sleep(10)
+
 		else:
 			sleep_time = 5
-		cmd = line.strip()
+
 		if len(cmd) > 0 and '!' != cmd:
-			curr_cmd = print_progress(line)
-			# print 'cur cmd, len is ', curr_cmd, len(curr_cmd)
-			# Now we can execute commands
+			# print '()())))))))))))))))))))))))))))))))))))))))))))))))))))))))()()))))()())()())()()()'
+			if 'sleep' not in cmd and 'print' not in cmd:
+				if 'ping count' in cmd:
+					sleep_time = 15
+				if 'commit' in cmd:
+					sleep_time = 20
+				print 'sleep time is: ', sleep_time
 
-			ssh_remote.send(line.lstrip() + '\n\n')
+				curr_cmd = print_progress(line)
+				# print 'cur cmd, len is ', curr_cmd, len(curr_cmd)
+				# Now we can execute commands
 
-			time.sleep(sleep_time)
+				ssh_remote.send(line.lstrip() + '\n\n')
 
-			# Get ssh response.
-			new_output, result, new_file = get_ssh_response(ssh_remote, first_run, new_file)
+				time.sleep(sleep_time)
 
-			if first_run:
-				final_result = result
-				first_run = False
+				# Get ssh response.
+				new_output, result, new_file = get_ssh_response(ssh_remote, first_run, new_file)
+				print new_output
+				if first_run:
+					final_result = result
+					first_run = False
 
-			# Print completion status to terminal
-			print_cmd_completion_status(curr_cmd, new_output, dict_list[1].get(device_brand))
+				# Print completion status to terminal
+				print_cmd_completion_status(curr_cmd, new_output, dict_list[1].get(device_brand))
 
-			# Write output to the output file
-			final_result.write(new_output)
-			print 'wrote new output'
+				# Write output to the output file
+				final_result.write(new_output)
+				# print 'wrote new output'
+			else:
+				if 'print' in cmd:
+					sleep_time = 10
+					interface = cmd.split()
+
+					print '<<<<<<<<<<  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
+					print '| SLEEPING FOR 10 SECONDS'
+					time.sleep(sleep_time)
+				if 'sleep' in cmd:
+					print '***************SLEEP IS IN LINE'
+					sleep_time = 5 * 60
+					# line = command_list.next()
+					cmd = line.strip()
+					print '| SLEEPING FOR 5 MINUTES'
+					time.sleep(sleep_time)
+					sleep_time = 5
+
 	if final_result is None:
 		print 'ERROR. You do not have any commands in your list.'
 	final_result.close()
@@ -215,3 +261,71 @@ def Main(args, dict_list):
 
 	# When complete, check all output files for errors
 	error_check(device_brand, output_files_list, dict_list[1])
+
+
+
+#
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-kfile', '--kevinfile', default=None)
+# parser.add_argument('-sf', '--singlefile')
+# parser.add_argument('-b', '--devicebrand', default='pan')
+# from interface_funcs import *
+#
+# #     device_type.py
+# #
+# # This file contains the list of supported devices,
+# # and commands used by each device
+#
+#
+# # Commands to get into config mode
+# config_mode = {
+# 		'cisco': 'en\nconf t\nterm len 0',
+# 		'arista': 'en\nconf t\nterm len 0',
+# 		'juniper': 'cli\nconfigure\nset cli screen-length 0',
+# 		'pan': 'set cli pager off\nconfigure'
+# }
+#
+#
+#
+# # keys used to look for "wrong command"
+# # Note, multi word keys need quotes around them
+# # aditional cmds: pan: Invalid syntax.
+# invalid_cmd_key = {
+# 	'cisco': 'Invalid',
+# 	'arista': 'Invalid',
+# 	'juniper': '',
+# 	'pan': '"Unknown command:"\n"Invalid syntax"',
+# 	'ubuntu': '"not found"'
+# }
+#
+# def pan_interface_check():
+# 	return 'heelo there'
+#
+#
+# interface_funcs = {
+# 	# 'cisco': cisco_interface_check,
+# 	# 'arista': arista_interface_check,
+# 	# 'juniper': juniper_interface_check,
+# 	'pan': pan_interface_check,
+# 	# 'ubuntu': ubuntu_interface_check
+# }
+#
+# dict_list = []
+# dict_list.append(config_mode)
+# dict_list.append(invalid_cmd_key)
+# dict_list.append(interface_funcs)
+#
+# def get_dict_list():
+# 	dict_list = []
+# 	dict_list.append(config_mode)
+# 	dict_list.append(invalid_cmd_key)
+# 	dict_list.append(interface_funcs)
+#
+# 	return dict_list
+#
+# #     dict_list
+# #
+# # 0 config_mode
+# # 1 invalid_cmd_key
+# # 2 interface_funcs
+# Main(parser.parse_args(), dict_list)

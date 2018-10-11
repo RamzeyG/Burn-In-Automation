@@ -41,6 +41,14 @@ dict_list.append(config_mode)
 dict_list.append(invalid_cmd_key)
 dict_list.append(interface_funcs)
 
+def get_dict_list():
+	dict_list = []
+	dict_list.append(config_mode)
+	dict_list.append(invalid_cmd_key)
+	dict_list.append(interface_funcs)
+
+	return dict_list
+
 #     dict_list
 #
 # 0 config_mode
