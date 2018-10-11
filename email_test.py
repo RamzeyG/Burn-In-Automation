@@ -25,8 +25,20 @@ msgRoot.attach(msgAlternative)
 msgText = MIMEText('This is the alternative plain text message.')
 msgAlternative.attach(msgText)
 
+name = "RAMZEY"
+engineer = 'ramzey'
+
 # We reference the image in the IMG SRC attribute by the ID we give it below
-msgText = MIMEText('<b>Some <i>HTML</i> text</b> and an image.<br><img src="cid:image1"><br>Nifty!', 'html')
+email_begin = '''<center><b> <p style="font-size:50px;"> Burn In Assessment Results</p> </b> <br><img src="cid:image1" 
+width="40%" height="40%"><br></center>'''
+email_middle = '''Hello, ''' + name + '\n\n'
+
+email_end = '''<p>Attached you can find the burn in Assessment for your active project. Contact the Engineer: '''+engineer \
+            + ''' if you have any questions.</p>
+
+<p> This is an automated message. </p>'''
+
+msgText = MIMEText(email_begin + email_middle + email_end, 'html')
 msgAlternative.attach(msgText)
 
 # This example assumes the image is in the current directory

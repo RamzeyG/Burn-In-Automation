@@ -3,6 +3,7 @@ from questions import *
 import time
 # from quality_check_interfaces import *
 
+# Upgrade OS and pull license.
 def upgrade_os(equipment_manufacturer, os):
     if equipment_manufacturer == 'pan':
         file = open('os_cmd.txt', 'w')
@@ -13,6 +14,8 @@ def upgrade_os(equipment_manufacturer, os):
         file.write('set deviceconfig system ntp-servers primary-ntp-server ntp-server-address 0.us.pool.ntp.org\n')
         file.write('set deviceconfig system ntp-servers secondary-ntp-server ntp-server-address 1.us.pool.ntp.org\n')
         file.write('commit\n')
+        file.write('exit\n')
+        file.write('request license fetch\n')
 
 
 
