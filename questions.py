@@ -1,6 +1,21 @@
 from devicetype import *
 import datetime
 
+#           get_num_of_devices()
+#
+# This function asks the user what number of devices they have
+#
+# @return: num_of_devices - int - number of devices the user has.
+def get_num_of_devices():
+    my_prompt = 'How many devices do you want to test? '
+    my_confirmation = 'About to use this number of devices: '
+    num_of_devices = get_information(my_prompt, my_confirmation)
+    if num_of_devices.isdigit():
+        return num_of_devices
+    else:
+        print '\n\nNot a valid number. Try again.'
+        get_num_of_devices()
+
 #            get_brand()
 #
 # Gets the device brand from the user
@@ -176,8 +191,23 @@ def get_damage_assesment():
 
 def email_questions(engineer_name):
     to = []
+    to_email = []
     sender = []
     sender.append(engineer_name)
+
+
+    # Number of people we are sending this to:
+    my_prompt = 'How many people do you want to send the report to? '
+    my_confirmation = 'This many people: '
+    num = get_information(my_prompt, my_confirmation)
+    if num.isdigit():
+        num = int(num)
+    else:
+        print 'Please try again. Not a valid number'
+        email_questions(engineer_name)
+
+
+    # User log-in Credentials
     my_prompt = 'What is your e-mail? '
     my_confirmation = 'Your e-mail is: '
     sender.append(get_information(my_prompt, my_confirmation))
@@ -185,16 +215,16 @@ def email_questions(engineer_name):
     my_confirmation = 'Your Password is: '
     sender.append(get_information(my_prompt, my_confirmation))
 
-    # Sender Informatin:
-    my_prompt = 'Who are you sending this report to? '
-    my_confirmation = 'You are sending this report to: '
-    to.append(get_information(my_prompt, my_confirmation))
+    for i in range(0, num, 1):
+        my_prompt = str(i) + '. Who are you sending this report to? '
+        my_confirmation = 'You are sending this report to: '
+        to.append(get_information(my_prompt, my_confirmation))
 
-    my_prompt = 'What is '+ to[0] + "'s e-mail? "
-    my_confirmation = to[0] + "'s e-mail is: "
-    sender.append(get_information(my_prompt, my_confirmation))
+        my_prompt = 'What is '+ to[i] + "'s e-mail? "
+        my_confirmation = to[i] + "'s e-mail is: "
+        to_email.append(get_information(my_prompt, my_confirmation))
 
-    return sender, to
+    return sender, to, to_email
 # get_date()
 # print get_equipment_model()
 # get_serial_numbers()

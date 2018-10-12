@@ -125,9 +125,9 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 			sn_time = s_time[1]
 			if sn_time.isdigit():
 				sleep_time = int(sn_time)
-				print '| SLEEPING FOR X MINUTES, ONE'
+				print '| SLEEPING FOR ' + str(sleep_time) + ' MINUTES, ONE'
 				if 'sleep 10' in cmd:
-					sleep_time = 7 * 60
+					sleep_time = 10 * 60
 				else:
 					sleep_time = 5 * 60
 			else:
@@ -141,62 +141,41 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 
 			time.sleep(sleep_time)
 			sleep_time = 5
-		# elif 'ping count' in cmd:
-		# 	sleep_time = 10
-		# 	interface = cmd.split()
-		#
-		# 	print '<<<<<<<<<<  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
-		# 	print '| SLEEPING FOR 10 SECONDS'
-		# 	time.sleep(10)
 
 		else:
 			sleep_time = 5
 
 		if len(cmd) > 0 and '!' != cmd:
 			# print '()())))))))))))))))))))))))))))))))))))))))))))))))))))))))()()))))()())()())()()()'
-			if 'sleep' not in cmd and 'print' not in cmd:
-				if 'ping count' in cmd:
-					sleep_time = 15
-				if 'commit' in cmd:
-					sleep_time = 20
-				print 'sleep time is: ', sleep_time
 
-				curr_cmd = print_progress(line)
-				# print 'cur cmd, len is ', curr_cmd, len(curr_cmd)
-				# Now we can execute commands
+			if 'ping count' in cmd:
+				sleep_time = 15
+			if 'commit' in cmd:
+				sleep_time = 20
+			print 'sleep time is: ', sleep_time
 
-				ssh_remote.send(line.lstrip() + '\n')
+			curr_cmd = print_progress(line)
+			# print 'cur cmd, len is ', curr_cmd, len(curr_cmd)
+			# Now we can execute commands
 
-				time.sleep(sleep_time)
+			ssh_remote.send(line.lstrip() + '\n')
 
-				# Get ssh response.
-				new_output, result, new_file = get_ssh_response(ssh_remote, first_run, new_file)
-				print new_output
-				if first_run:
-					final_result = result
-					first_run = False
+			time.sleep(sleep_time)
 
-				# Print completion status to terminal
-				print_cmd_completion_status(curr_cmd, new_output, dict_list[1].get(device_brand))
+			# Get ssh response.
+			new_output, result, new_file = get_ssh_response(ssh_remote, first_run, new_file)
+			print new_output
+			if first_run:
+				final_result = result
+				first_run = False
 
-				# Write output to the output file
-				final_result.write(new_output)
-				# print 'wrote new output'
-			else:
-				if 'print' in cmd:
-					sleep_time = 10
-					interface = cmd.split()
+			# Print completion status to terminal
+			print_cmd_completion_status(curr_cmd, new_output, dict_list[1].get(device_brand))
 
-					print '<<<<<<<<<<2  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
-					print '| SLEEPING FOR 10 SECONDS'
-					time.sleep(sleep_time)
-				if 'sleep' in cmd:
-					s_time = cmd.split(' ')
-					sn_time = s_time[1]
-					sleep_time = 6 * 60
-					print '| SLEEPING FOR 6 MINUTES, TWOOOO'
-					time.sleep(sleep_time)
-					sleep_time = 5
+			# Write output to the output file
+			final_result.write(new_output)
+			# print 'wrote new output'
+
 
 	if final_result is None:
 		print 'ERROR. You do not have any commands in your list.'
