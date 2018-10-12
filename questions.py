@@ -173,6 +173,28 @@ def get_damage_assesment():
     my_confirmation = 'About to submit: '
     return get_information(my_prompt, my_confirmation)
 
+
+def email_questions(engineer_name):
+    to = []
+    sender = []
+    sender.append(engineer_name)
+    my_prompt = 'What is your e-mail? '
+    my_confirmation = 'Your e-mail is: '
+    sender.append(get_information(my_prompt, my_confirmation))
+    my_prompt = 'What is your Password? '
+    my_confirmation = 'Your Password is: '
+    sender.append(get_information(my_prompt, my_confirmation))
+
+    # Sender Informatin:
+    my_prompt = 'Who are you sending this report to? '
+    my_confirmation = 'You are sending this report to: '
+    to.append(get_information(my_prompt, my_confirmation))
+
+    my_prompt = 'What is '+ to[0] + "'s e-mail? "
+    my_confirmation = to[0] + "'s e-mail is: "
+    sender.append(get_information(my_prompt, my_confirmation))
+
+    return sender, to
 # get_date()
 # print get_equipment_model()
 # get_serial_numbers()

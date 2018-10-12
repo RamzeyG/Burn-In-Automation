@@ -68,11 +68,12 @@ def set_quality_checks_table(os, visual_inspec, int_test, int_percent_check, bur
     string += '\\begin{table}[H]\n\\centering\n'
     string += '\\begin{tabular}{|c|l|c|}\n \\hline\n'
     string += '& ' + bold_text('Quality Checks') + ' & ' + bold_text('Pass/Fail') + '\\\\ \\hline\n'
-
+    pass_count = 5
     # Actual Table Contents
     end_line = ' \\\\ \\hline\n'
     if 'no' in os:
         string += '1& Upgraded OS & Fail' + end_line
+        pass_count -= 1
     else:
         string += '1& Upgraded OS & Pass' + end_line
 
@@ -80,14 +81,23 @@ def set_quality_checks_table(os, visual_inspec, int_test, int_percent_check, bur
         string += '2& Visual Inspection (damage check) & Pass' + end_line
     else:
         string += '2& Visual Inspection (damage check) & Fail' + end_line
-    string += '3& Tested Interfaces/Ports (' + str(int(int_percent_check)) + '\\%) & ' + str(int(int_test)) + end_line
-    string += '4& Burn in Duration: 24+ hours & ' + burn_in_duration + end_line
-    string += '5& Inventory Check & ' + inventory_check + end_line
+        pass_count -= 1
+    string += '3& Tested Interfaces/Ports & Pass' + end_line
+    if burn_in_duration.isdigit() and int(burn_in_duration):
+        string += '4& Burn in Duration: 24+ hours & Pass' + end_line
+    else:
+        string += '4& Burn in Duration: 24+ hours & Fail' + end_line
+        pass_count -= 1
+    if inventory_check == 'yes' or inventory_check == 'y':
+        string += '5& Inventory Check & Pass ' + end_line
+    elif inventory_check == 'no' or inventory_check == 'n':
+        string += '5& Inventory Check & Fail ' + end_line
+        pass_count -= 1
 
     # End Table
-    string += '\\end{tabular}\n\\end{table}'
+    string += '\\end{tabular}\n\\end{table}\n'
 
-    return string
+    return string, pass_count
 
 
 def set_ending(test_num, tests_passed):

@@ -121,11 +121,24 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 		if 'show' in cmd:
 			sleep_time = 10
 		elif 'sleep ' in cmd:
-			print '***************SLEEP IS IN LINE'
-			sleep_time = 5 * 60
+			s_time = cmd.split(' ')
+			sn_time = s_time[1]
+			if sn_time.isdigit():
+				sleep_time = int(sn_time)
+				print '| SLEEPING FOR X MINUTES, ONE'
+				if 'sleep 10' in cmd:
+					sleep_time = 7 * 60
+				else:
+					sleep_time = 5 * 60
+			else:
+				if 'sleep 10' in cmd:
+					sleep_time = 10 * 60
+				else:
+					sleep_time = 5 * 60
+					print '| SLEEPING FOR 6 MINUTES, ONE'
 			line = command_list.next()
 			cmd = line.strip()
-			print '| SLEEPING FOR 5 MINUTES'
+
 			time.sleep(sleep_time)
 			sleep_time = 5
 		# elif 'ping count' in cmd:
@@ -152,7 +165,7 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 				# print 'cur cmd, len is ', curr_cmd, len(curr_cmd)
 				# Now we can execute commands
 
-				ssh_remote.send(line.lstrip() + '\n\n')
+				ssh_remote.send(line.lstrip() + '\n')
 
 				time.sleep(sleep_time)
 
@@ -174,15 +187,14 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 					sleep_time = 10
 					interface = cmd.split()
 
-					print '<<<<<<<<<<  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
+					print '<<<<<<<<<<2  Plug Cable into ' + interface[1] + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>'
 					print '| SLEEPING FOR 10 SECONDS'
 					time.sleep(sleep_time)
 				if 'sleep' in cmd:
-					print '***************SLEEP IS IN LINE'
-					sleep_time = 5 * 60
-					# line = command_list.next()
-					cmd = line.strip()
-					print '| SLEEPING FOR 5 MINUTES'
+					s_time = cmd.split(' ')
+					sn_time = s_time[1]
+					sleep_time = 6 * 60
+					print '| SLEEPING FOR 6 MINUTES, TWOOOO'
 					time.sleep(sleep_time)
 					sleep_time = 5
 

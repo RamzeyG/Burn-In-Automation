@@ -8,9 +8,17 @@ from email.mime.image import MIMEImage
 from email.mime.base import MIMEBase
 from email import encoders
 
-def send_email(filename, to_email, from_email, subject, email_password, email_user):
+def send_email(filename, to, sender, subject):
     try:
         # Create the root message and fill in the from, to, and subject headers
+
+        engineer = sender[0]
+        from_email = sender[1]
+        email_password = sender[2]
+
+        to_name = to[0]
+        to_email = to[1]
+
         msgRoot = MIMEMultipart('related')
         msgRoot['Subject'] = subject
         msgRoot['From'] = from_email
@@ -25,15 +33,12 @@ def send_email(filename, to_email, from_email, subject, email_password, email_us
         msgText = MIMEText('''Your recent project's burn in is complete''')
         msgAlternative.attach(msgText)
 
-        name = "RAMZEY"
-        engineer = 'ramzey'
-
         # We reference the image in the IMG SRC attribute by the ID we give it below
-        email_begin = '''<center><b> <p style="font-size:50px;"> Burn In Assessment Results</p> </b> <br><img src="cid:image1" 
-        width="40%" height="40%"><br></center>'''
-        email_middle = '''Hello, ''' + name + '\n\n'
+        email_begin = '''<center><b> <p style="font-size:50px;"> Burn In Results</p> </b> <br><img src="cid:image1" 
+        width="40%" height="40%"><br></center> <hr>'''
+        email_middle = '''\n\nHello, ''' + to_name + '\n\n'
 
-        email_end = '''<p>Attached you can find the burn in Assessment for your active project. Contact the Engineer: ''' + engineer \
+        email_end = '''<p>Attached you can find the burn in assessment for your active project. Contact the Engineer: ''' + engineer \
                     + ''' if you have any questions.</p>
 
         <p> This is an automated message. </p>'''
@@ -64,8 +69,9 @@ def send_email(filename, to_email, from_email, subject, email_password, email_us
         smtp = smtplib.SMTP()
         smtp.connect('smtp-mail.outlook.com', 587)
         smtp.starttls()
-        smtp.login('rghanaim@intervision.com', '')
-        smtp.sendmail('rghanaim@intervision.com', 'rghanaim@intervision.com', msgRoot.as_string())
+        email_user = from_email
+        smtp.login(email_user, email_password)
+        smtp.sendmail(from_email, to_email, msgRoot.as_string())
         smtp.quit()
 
         # msg = MIMEMultipart()
@@ -113,8 +119,19 @@ def get_email_contents():
     body2 = '<b>Some <i>HTML</i> text</b> and an image.<br><img src="cid:image1"><br>Nifty!'
     return body2
 
-send_email(filename='pdf-sample.pdf', to_email=config.ME, from_email=config.ME,
-           subject="Attachment2", email_password=config.PASSWORD, email_user=config.ME)
+
+# name = 'burn-in-results-016201004695'
+#
+# me = []
+# me.append('Ramzey Ghanaim')
+# me.append('rghanaim@intervision.com')
+# me.append('Hellothere2')
+#
+# to = []
+# to.append('to name')
+# to.append('rghanaim@intervision.com')
+#
+# send_email(filename=name+'.pdf',subject="Burn In Results", to=to, sender=me)
 
 
 

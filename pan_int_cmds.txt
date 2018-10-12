@@ -13,16 +13,16 @@ delete zone untrust network virtual-wire
 set zone untrust network layer3 [ ]
 set network virtual-router default routing-table ip static-route default-route nexthop ip-address 10.10.192.1
 set network virtual-router default routing-table ip static-route default-route destination 0.0.0.0/0
-set network interface ethernet ethernet1/2 layer3 interface-management-profile Standard-Mgmt
-set network interface ethernet ethernet1/2 layer3 ip 10.10.192.65/21
-set network virtual-router default interface ethernet1/2
-set network virtual-router default routing-table ip static-route default-route interface ethernet1/2
-set zone trust network layer3 ethernet1/2
+set network interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
+set network interface ethernet ethernet1/6 layer3 ip 10.10.192.65/21
+set network virtual-router default interface ethernet1/6
+set network virtual-router default routing-table ip static-route default-route interface ethernet1/6
+set zone trust network layer3 ethernet1/6
 commit
 exit
-print ethernet1/2
+print ethernet1/6
 ping count 4 source 10.10.192.65 host 10.10.192.1
 configure
-delete network interface ethernet ethernet1/2 layer3 interface-management-profile Standard-Mgmt
-delete network interface ethernet ethernet1/2 layer3 ip 10.10.192.65/21
-delete zone trust network layer3 ethernet1/2
+delete network interface ethernet ethernet1/6 layer3 interface-management-profile Standard-Mgmt
+delete network interface ethernet ethernet1/6 layer3 ip 10.10.192.65/21
+delete zone trust network layer3 ethernet1/6
