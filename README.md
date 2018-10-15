@@ -20,8 +20,11 @@ sudo pip install paramiko
 sudo pip install argparse
 sudo pip install pexpect
 sudo pip install numpy
-sudo apt install texlive-full
+sudo pip install tqdm
+sudo apt install texlive-full -y
 ```
+NOTE: texlive-full will take a long time to install. Its best to install over night. 
+
 Arch Users: use "pacman -S" instead of "apt"
 
 # Usage
