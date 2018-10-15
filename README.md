@@ -28,3 +28,4 @@ NOTE: texlive-full will take a long time to install. Its best to install over ni
 Arch Users: use "pacman -S" instead of "apt"
 
 # Usage
+Simply use ```python main.py``` to run the program, and follow the on screen instructions.
