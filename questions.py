@@ -11,7 +11,7 @@ def get_num_of_devices():
     my_confirmation = 'About to use this number of devices: '
     num_of_devices = get_information(my_prompt, my_confirmation)
     if num_of_devices.isdigit():
-        return num_of_devices
+        return int(num_of_devices)
     else:
         print '\n\nNot a valid number. Try again.'
         get_num_of_devices()
@@ -65,14 +65,14 @@ def get_os_upgrade(device_type):
 #
 # @return os_version - type string - os version user wants to upgrade PAN to.
 def get_os_upgrade_cisco():
-    os_version = raw_input('\n\nWhat Cisco OS version would you like to upgrade to? ')
+    os_version = raw_input('\n\nWhat Cisco OS version would you like to upgrade to?[os/no] ')
     os_versions = []
     MAX_OS = 16
     for i in range(0, MAX_OS, 1):
         panos_versions.append(str(i+1)+'.')
 
     for z in range(0,MAX_OS, 1):
-        if os_version.startswith(os_versions[i]):
+        if os_version.startswith(os_versions[i]) or 'n' in os_version or 'no' in os_version:
             return os_version
 
     print "Please enter a proper OS. Available options are: ", os_versions
@@ -84,9 +84,13 @@ def get_os_upgrade_cisco():
 #
 # @return os_version - type string - os version user wants to upgrade PAN to.
 def get_os_upgrade_pan():
-    os_version = raw_input('\n\nWhat PAN OS version would you like to upgrade to? ')
+    os_version = raw_input('\n\nWhat PAN OS version would you like to upgrade to?[os/no] ')
+    if 'n' in os_version or 'no' in os_version:
+        return os_version
+
     panos_versions = []
     MAX_OS = 8
+
     for i in range(0, MAX_OS, 1):
         panos_versions.append(str(i+1)+'.')
 
@@ -156,6 +160,9 @@ def get_equipment_model():
 def get_os_upgrade(brand, MAX_OS):
     prompt = '\n\nWhat ' + brand + ' OS version would you like to upgrade to? '
     os_version = raw_input(prompt)
+    if 'n' in os_version or 'no' in os_version:
+        return os_version
+
     os_versions = []
     for i in range(0, MAX_OS, 1):
         os_versions.append(str(i + 1) + '.')

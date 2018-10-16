@@ -43,6 +43,9 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
     system_cmds.append('delete zone trust network virtual-wire ethernet1/2')
     system_cmds.append('delete zone untrust network virtual-wire ethernet1/1')
     system_cmds.append('delete zone untrust network virtual-wire')
+    # Next two commands might need to go on the end
+    system_cmds.append('delete network interface ethernet ethernet1/1 virtual-wire')
+    system_cmds.append('delete network interface ethernet ethernet1/2 virtual-wire')
     system_cmds.append('set zone untrust network layer3 [ ]')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route nexthop ip-address 10.10.192.1')
     system_cmds.append('set network virtual-router default routing-table ip static-route default-route destination 0.0.0.0/0')
@@ -68,19 +71,19 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
         cmd_list.append('network interface ethernet ' + my_interface + ' layer3 interface-management-profile Standard-Mgmt')
         cmd_list.append('network interface ethernet ' + my_interface + ' layer3 ip 10.10.192.65/21')
         cmd_list.append('network virtual-router default interface ' + my_interface)
-        cmd_list.append('network virtual-router default routing-table ip static-route default-route interface '+my_interface)
         cmd_list.append('zone trust network layer3 ' + my_interface)
+        cmd_list.append('network virtual-router default routing-table ip static-route default-route interface ' + my_interface)
 
 
-        delete_list.append('network interface ethernet ' + my_interface + ' layer3 interface-management-profile Standard-Mgmt')
+        # delete_list.append('network interface ethernet ' + my_interface + ' layer3 interface-management-profile Standard-Mgmt')
         delete_list.append('network interface ethernet ' + my_interface + ' layer3 ip 10.10.192.65/21')
 
         # Get rid of cmd bellow??
         # delete_list.append('network virtual-router default routing-table ip static-route default-route interface')
-
-
-        # delete_list.append('network virtual-router default interface ' + my_interface)
+        delete_list.append('network virtual-router default routing-table ip static-route default-route interface')
         delete_list.append('zone trust network layer3 ' + my_interface)
+        delete_list.append('network interface ethernet ' + my_interface + ' layer3')
+        delete_list.append('network virtual-router default interface ' + my_interface)
 
 
         for command in cmd_list:
@@ -99,6 +102,8 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
         for command in delete_list:
             single_file.write('delete ' + command + '\n')
 
+    single_file.write('delete network profiles interface-management-profile Standard-Mgmt\n')
+    single_file.write('commit\n')
     single_file.close()
 
 

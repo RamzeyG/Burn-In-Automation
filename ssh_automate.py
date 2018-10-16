@@ -2,6 +2,7 @@ import paramiko
 import time
 import argparse
 import numpy as np
+from tqdm import tqdm
 
 # REMOVE
 from devicetype import *
@@ -29,7 +30,14 @@ from helper_func import *
 # can be found in the file "sshSetupCisco.txt" for Cisco devices)
 
 
-
+#         my_sleep()
+#
+# This function puts a progress bar while sleeping
+#
+# @param: int time - seconds program sleeps for
+def my_sleep(seconds):
+	for i in tqdm(range(0, seconds, 1)):
+		time.sleep(1)
 
 
 
@@ -120,6 +128,11 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 		cmd = line.strip()
 		if 'show' in cmd:
 			sleep_time = 10
+		elif 'print ' in cmd:
+			split = cmd.split(' ')
+			print '       Please INSERT Ethernet cable into interface: ' + split[1]+ '\n'
+			my_sleep(15)
+			line = command_list.next()
 		elif 'sleep ' in cmd:
 			s_time = cmd.split(' ')
 			sn_time = s_time[1]
@@ -139,7 +152,8 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 			line = command_list.next()
 			cmd = line.strip()
 
-			time.sleep(sleep_time)
+			# time.sleep(sleep_time)
+			my_sleep(sleep_time)
 			sleep_time = 5
 
 		else:
@@ -150,8 +164,10 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 
 			if 'ping count' in cmd:
 				sleep_time = 15
+				print 'lower, 15'
 			if 'commit' in cmd:
 				sleep_time = 20
+				print 'lower, 20'
 			print 'sleep time is: ', sleep_time
 
 			curr_cmd = print_progress(line)
@@ -160,7 +176,8 @@ def execute_commands(ip_commands, ssh_remote, device_name, kevin_flag, k_file_na
 
 			ssh_remote.send(line.lstrip() + '\n')
 
-			time.sleep(sleep_time)
+			# time.sleep(sleep_time)
+			my_sleep(sleep_time)
 
 			# Get ssh response.
 			new_output, result, new_file = get_ssh_response(ssh_remote, first_run, new_file)

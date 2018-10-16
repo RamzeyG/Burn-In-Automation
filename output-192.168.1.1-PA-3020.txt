@@ -1,0 +1,197 @@
+set [Kadmin@PA-3020# set deviceconfig [Kadmin@PA-3020# set deviceconfig system [Kadmin@PA-3020# set deviceconfig system dns-setting [Kadmin@PA-3020# set deviceconfig system dns-setting servers [Kadmin@PA-3020# set deviceconfig system dns-setting servers primary [Kadmin@PA-3020# set deviceconfig system dns-setting servers primary 8.8.8.8 [Kadmin@PA-3020# set deviceconfig system dns-setting servers primary 8.8.8.8 secon dary [K[A[Kadmin@PA-3020# set deviceconfig system dns-setting servers primary 8.8.8.8 secon dary 8.8.8.8
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set deviceconfig [Kadmin@PA-3020# set deviceconfig system [Kadmin@PA-3020# set deviceconfig system ntp-servers [Kadmin@PA-3020# set deviceconfig system ntp-servers primary-ntp-server [Kadmin@PA-3020# set deviceconfig system ntp-servers primary-ntp-server ntp-server -address [K[A[Kadmin@PA-3020# set deviceconfig system ntp-servers primary-ntp-server ntp-server -address 0.us.pool.ntp.org
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set deviceconfig [Kadmin@PA-3020# set deviceconfig system [Kadmin@PA-3020# set deviceconfig system ntp-servers [Kadmin@PA-3020# set deviceconfig system ntp-servers secondary-ntp-server [Kadmin@PA-3020# set deviceconfig system ntp-servers secondary-ntp-server ntp-serv er-address [K[A[Kadmin@PA-3020# set deviceconfig system ntp-servers secondary-ntp-server ntp-serv er-address 1.us.pool.ntp.org
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network profiles [Kadmin@PA-3020# set network profiles interface-management-profile [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt h ttps [K[A[Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt h ttps yes
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network profiles [Kadmin@PA-3020# set network profiles interface-management-profile [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt s sh [K[A[Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt s sh yes
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network profiles [Kadmin@PA-3020# set network profiles interface-management-profile [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt [Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt p ing [K[A[Kadmin@PA-3020# set network profiles interface-management-profile Standard-Mgmt p ing yes
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network virtual-wire [Kadmin@PA-3020# delete network virtual-wire default-vwire [Kadmin@PA-3020# delete network virtual-wire default-vwire interface1
+
+No object to delete in delete handler
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network virtual-wire [Kadmin@PA-3020# delete network virtual-wire default-vwire [Kadmin@PA-3020# delete network virtual-wire default-vwire interface2
+
+No object to delete in delete handler
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network virtual-wire [Kadmin@PA-3020# delete network virtual-wire default-vwire
+
+Object doesn't exist
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete zone [Kadmin@PA-3020# delete zone trust [Kadmin@PA-3020# delete zone trust network [Kadmin@PA-3020# delete zone trust network virtual-wire [Kadmin@PA-3020# delete zone trust network virtual-wire ethernet1/2
+
+No object to delete in delete handler
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete zone [Kadmin@PA-3020# delete zone untrust [Kadmin@PA-3020# delete zone untrust network [Kadmin@PA-3020# delete zone untrust network virtual-wire [Kadmin@PA-3020# delete zone untrust network virtual-wire ethernet1/1
+
+No object to delete in delete handler
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete zone [Kadmin@PA-3020# delete zone untrust [Kadmin@PA-3020# delete zone untrust network [Kadmin@PA-3020# delete zone untrust network virtual-wire
+
+Object doesn't exist
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network interface [Kadmin@PA-3020# delete network interface ethernet [Kadmin@PA-3020# delete network interface ethernet ethernet1/1 [Kadmin@PA-3020# delete network interface ethernet ethernet1/1 virtual-wire
+
+Object doesn't exist
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network interface [Kadmin@PA-3020# delete network interface ethernet [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 virtual-wire
+
+Object doesn't exist
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set zone [Kadmin@PA-3020# set zone untrust [Kadmin@PA-3020# set zone untrust network [Kadmin@PA-3020# set zone untrust network layer3 [Kadmin@PA-3020# set zone untrust network layer3 [ [Kadmin@PA-3020# set zone untrust network layer3 [ ]
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network virtual-router [Kadmin@PA-3020# set network virtual-router default [Kadmin@PA-3020# set network virtual-router default routing-table [Kadmin@PA-3020# set network virtual-router default routing-table ip [Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route nexthop [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route nexthop ip-address [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route nexthop ip-address 10.10.192.1
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network virtual-router [Kadmin@PA-3020# set network virtual-router default [Kadmin@PA-3020# set network virtual-router default routing-table [Kadmin@PA-3020# set network virtual-router default routing-table ip [Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route destination [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route destination 0.0.0.0/0
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network interface [Kadmin@PA-3020# set network interface ethernet [Kadmin@PA-3020# set network interface ethernet ethernet1/2 [Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 [Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 interface-manag ement-profile [K[A[Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 interface-manag ement-profile Standard-Mgmt
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network interface [Kadmin@PA-3020# set network interface ethernet [Kadmin@PA-3020# set network interface ethernet ethernet1/2 [Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 [Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 ip [Kadmin@PA-3020# set network interface ethernet ethernet1/2 layer3 ip 10.10.192.65 /21
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network virtual-router [Kadmin@PA-3020# set network virtual-router default [Kadmin@PA-3020# set network virtual-router default interface [Kadmin@PA-3020# set network virtual-router default interface ethernet1/2
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set zone [Kadmin@PA-3020# set zone trust [Kadmin@PA-3020# set zone trust network [Kadmin@PA-3020# set zone trust network layer3 [Kadmin@PA-3020# set zone trust network layer3 ethernet1/2
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# set [Kadmin@PA-3020# set network [Kadmin@PA-3020# set network virtual-router [Kadmin@PA-3020# set network virtual-router default [Kadmin@PA-3020# set network virtual-router default routing-table [Kadmin@PA-3020# set network virtual-router default routing-table ip [Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route interface [K[A[Kadmin@PA-3020# set network virtual-router default routing-table ip static-route  default-route interface ethernet1/2
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# commit
+
+
+
+Commit job 4 is in progress. Use Ctrl+C to return to command prompt
+.....70%98%......100%
+Configuration committed successfully
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# exit
+Exiting configuration mode
+admin@PA-3020> 
+admin@PA-3020> ping [Kadmin@PA-3020> ping count [Kadmin@PA-3020> ping count 4 [Kadmin@PA-3020> ping count 4 source [Kadmin@PA-3020> ping count 4 source 10.10.192.65 [Kadmin@PA-3020> ping count 4 source 10.10.192.65 host [Kadmin@PA-3020> ping count 4 source 10.10.192.65 host 10.10.192.1
+PING 10.10.192.1 (10.10.192.1) from 10.10.192.65 : 56(84) bytes of data.
+64 bytes from 10.10.192.1: icmp_seq=2 ttl=64 time=111 ms
+64 bytes from 10.10.192.1: icmp_seq=3 ttl=64 time=10.4 ms
+64 bytes from 10.10.192.1: icmp_seq=4 ttl=64 time=12.9 ms
+
+--- 10.10.192.1 ping statistics ---
+4 packets transmitted, 3 received, 25% packet loss, time 3001ms
+rtt min/avg/max/mdev = 10.403/44.871/111.260/46.955 ms
+admin@PA-3020> 
+admin@PA-3020> configure
+Entering configuration mode
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network interface [Kadmin@PA-3020# delete network interface ethernet [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 layer3 [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 layer3 ip [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 layer3 ip 10.10.192 .65/21
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network virtual-router [Kadmin@PA-3020# delete network virtual-router default [Kadmin@PA-3020# delete network virtual-router default routing-table [Kadmin@PA-3020# delete network virtual-router default routing-table ip [Kadmin@PA-3020# delete network virtual-router default routing-table ip static-rou te [K[A[Kadmin@PA-3020# delete network virtual-router default routing-table ip static-rou te default-route [K[A[Kadmin@PA-3020# delete network virtual-router default routing-table ip static-rou te default-route interface
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete zone [Kadmin@PA-3020# delete zone trust [Kadmin@PA-3020# delete zone trust network [Kadmin@PA-3020# delete zone trust network layer3 [Kadmin@PA-3020# delete zone trust network layer3 ethernet1/2
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network interface [Kadmin@PA-3020# delete network interface ethernet [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 [Kadmin@PA-3020# delete network interface ethernet ethernet1/2 layer3
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network virtual-router [Kadmin@PA-3020# delete network virtual-router default [Kadmin@PA-3020# delete network virtual-router default interface [Kadmin@PA-3020# delete network virtual-router default interface ethernet1/2
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# delete [Kadmin@PA-3020# delete network [Kadmin@PA-3020# delete network profiles [Kadmin@PA-3020# delete network profiles interface-management-profile [Kadmin@PA-3020# delete network profiles interface-management-profile Standard-Mgm t
+
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# commit
+
+
+
+Commit job 5 is in progress. Use Ctrl+C to return to command prompt
+......
+can't find interface in 'default' for next hop 10.10.192.1(Module: routed)
+Commit failed
+[edit]                                                                          
+admin@PA-3020# 
+[edit]                                                                          
+admin@PA-3020# 
