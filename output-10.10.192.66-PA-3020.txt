@@ -1,0 +1,62 @@
+exit
+Exiting configuration mode
+admin@PA-3020> 
+admin@PA-3020> request [Kadmin@PA-3020> request license [Kadmin@PA-3020> request license fetch
+
+Current GMT Date: October 16, 2018
+
+License entry:
+Feature: GlobalProtect Gateway
+Description: GlobalProtect Gateway License
+Serial: 001801035952
+Issued: June 05, 2018
+Expires: July 05, 2018
+Expired?: yes
+
+License entry:
+Feature: Virtual Systems
+Description: Additional 5 Virtual System Licenses
+Serial: 001801035952
+Issued: July 19, 2016
+Expires: Never
+Expired?: no
+
+License entry:
+Feature: GlobalProtect Portal
+Description: GlobalProtect Portal License
+Serial: 001801035952
+Issued: June 05, 2018
+Expires: July 05, 2018
+Expired?: yes
+
+License entry:
+Feature: PAN-DB URL Filtering
+Description: Palo Alto Networks URL Filtering License
+Serial: 001801035952
+Issued: June 05, 2018
+Expires: July 05, 2018
+Expired?: yes
+
+License entry:
+Feature: Threat Prevention
+Description: Threat Prevention
+Serial: 001801035952
+Issued: June 05, 2018
+Expires: July 05, 2018
+Expired?: yes
+
+License entry:
+Feature: WildFire License
+Description: WildFire signature feed, integrated WildFire logs, WildFire API
+Serial: 001801035952
+Issued: June 05, 2018
+Expires: July 05, 2018
+Expired?: yes
+
+
+admin@PA-3020> 
+admin@PA-3020> request [Kadmin@PA-3020> request global-protect-client [Kadmin@PA-3020> request global-protect-client software [Kadmin@PA-3020> request global-protect-client software check
+
+Server error : The device does not have support
+admin@PA-3020> 
+admin@PA-3020> 

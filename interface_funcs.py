@@ -103,6 +103,7 @@ def pan_interface_check(percentage, num_of_interfaces, dict_list):
             single_file.write('delete ' + command + '\n')
 
     single_file.write('delete network profiles interface-management-profile Standard-Mgmt\n')
+    single_file.write('delete network virtual-router default routing-table ip static-route default-route\n')
     single_file.write('commit\n')
     single_file.close()
 

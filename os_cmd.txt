@@ -1,1 +1,18 @@
 exit
+request license fetch
+request global-protect-client software check
+request global-protect-client software download version nosleep 2
+request global-protect-client software activate version no
+y
+request system software check
+request system software download version 8.1.3
+request system software check
+request system software install version 8.1.3
+y
+set deviceconfig system ip-address 192.168.1.1
+set deviceconfig system netmask 255.255.255.0
+set deviceconfig system default-gateway 192.168.1.0
+commit
+request restart system
+y
+
