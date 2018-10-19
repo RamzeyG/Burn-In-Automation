@@ -6,6 +6,8 @@ from devicetype import *
 # This function will apply an IP address, attempt to ping and
 # remove the address
 def check_interfaces(num_of_interfaces, device_type):
+    if 'no' in num_of_interfaces or 'n' in num_of_interfaces:
+        return 0
     percentage = get_percentage()/ 100.0
 
     # Interface funcs are stored in interface_funcs.py

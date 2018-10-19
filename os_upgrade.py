@@ -1,6 +1,7 @@
 
 from questions import *
 import time
+# import re # remove extra whitepace
 # from quality_check_interfaces import *
 
 # Upgrade OS and pull license.
@@ -79,5 +80,33 @@ def upgrade_os_and_license(equipment_manufacturer, os):
             file_login.close()
         else:
             file.close()
+    elif equipment_manufacturer == 'aruba':
+        if 'no' not in str(os) or 'n' not in str(os):
+            get_aruba_boot_partition()
+            ip = raw_input('What is the IP address of the SCP server? ')
+            uname = raw_input('What is the user name of the SCP server? ')
+            passwd = raw_input('What is the password of the SCP server? ')
+            file = open('os_cmd.txt', 'w')
+            partition = get_aruba_boot_partition()
+            file.write('copy scp: '+ip + ' ' + uname + ' ' + passwd + ' system partition '+partition+'\n')
+            # file.write('')
+            file.close()
 
 # upgrade_os('pan', '8.1.3')
+
+
+def get_aruba_boot_partition():
+    boot_part_file = open('boot_cmd.txt', 'w')
+    boot_part_file.write('show boot\n')
+    boot_part_file.close()
+    output = run_ssh_automation('aruba', sf_name='boot_cmd.txt')
+
+    file = open(output, 'r')
+    for line in file:
+        if 'partition' in line:
+            print "Line is ", line
+            if '1' in line:
+                return '0'
+            else:
+                return '1'
+    file.close()

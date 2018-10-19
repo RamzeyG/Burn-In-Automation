@@ -24,7 +24,8 @@ invalid_cmd_key = {
 	'arista': 'Invalid',
 	'juniper': '',
 	'pan': '"Unknown command:"\n"Invalid syntax"',
-	'ubuntu': '"not found"'
+	'ubuntu': '"not found"',
+	'aruba': 'Invalid'
 }
 
 
@@ -34,6 +35,7 @@ interface_funcs = {
 	'juniper': juniper_interface_check,
 	'pan': pan_interface_check,
 	'ubuntu': ubuntu_interface_check
+	# 'aruba': aruba_interface_check
 }
 
 dict_list = []

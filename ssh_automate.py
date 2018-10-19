@@ -269,7 +269,8 @@ def Main(args, dict_list):
 
 	# When complete, check all output files for errors
 	error_check(device_brand, output_files_list, dict_list[1])
-
+	# return the name of the first output file
+	return output_files_list[0]
 
 
 #

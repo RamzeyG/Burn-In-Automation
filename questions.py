@@ -44,14 +44,13 @@ def get_brand():
 def get_num_of_interfaces():
     MAX = 100
     try:
-        number = input("How many total Interfaces does the device have? ")
+        number = input("How many total Interfaces does the device have?[num/no] ")
         # number2 = input("How many Interfaces do you want to check? ")
     except Exception as e:
         print 'You did not enter a valid number. Please try again.'
         exit(0)
     if number < MAX and number > 0: # or (number2 < number and number2 > 0):
         return number
-        #, number2
     else:
         print 'Please enter a valid number.\n\n '
         return get_num_of_interfaces()

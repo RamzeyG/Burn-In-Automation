@@ -123,6 +123,31 @@ def arista_interface_check(percentage, num_of_interfaces, dict_list):
 
 def juniper_interface_check(percentage, num_of_interfaces, dict_list):
     print 'in juniper'
+    import serial
+    import subprocess
+    num = raw_input('What Serial input are you connecting to? [number] ')
+    proc = subprocess.Popen(['sudo', 'chmod', '666', '/dev/ttyS'+num])
+    proc.communicate()
+    proc = subprocess.Popen(['stty', '-F', '/dev/ttyS'+num, 'sane', '9600'])
+    proc.communicate()
+
+    # View Serial devices:
+    # python -m serial.tools.list_ports
+    s = serial.Serial('/dev/ttyS'+num)
+    res = s.read()
+    s.write(b'root\n')
+    s.write(b'cli\n')
+    s.write(b'configure\n')
+    # set interfaces fxp0 unit 0 family inet address <address/prefix-length>
+    # OR
+    # set interfaces em0 unit 0 family inet address <address/prefix-length>
+
+    # DNS:
+    # set system name-server <address>
+
+    print(s.read())
+    s.close()
+    print(res)
 
 
 def ubuntu_interface_check(percentage, num_of_interfaces, dict_list):
@@ -144,7 +169,7 @@ def get_args(device_type, sf_name):
 
 def run_ssh_automation(device_type, sf_name):
     from devicetype import *
-    Main(get_args(device_type, sf_name), get_dict_list())
+    return Main(get_args(device_type, sf_name), get_dict_list())
 
 
 def get_used_ports(percentage, num_of_interfaces):

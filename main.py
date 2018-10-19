@@ -23,9 +23,9 @@ for i in range(0, num_of_devices, 1):
     os = get_os_upgrade(equipment_manufacturer, 9)
 
     # Quality checks
-    # total_interface_count = get_num_of_interfaces()
-    #
-    # interface_percentage = check_interfaces(total_interface_count, equipment_manufacturer)
+    total_interface_count = get_num_of_interfaces()
+
+    interface_percentage = check_interfaces(total_interface_count, equipment_manufacturer)
 
     upgrade_os_and_license(equipment_manufacturer, os)
 
